@@ -35,5 +35,7 @@ export const SERVICE_URLS = {
     getProjectDetails: { url: '/project/get-project/:id', method: 'GET', contentType: 'application/json', params: true },
     addMember: { url: '/project/add-member', method: 'POST', contentType: 'application/json' },
     addTask: { url: '/task/create-task', method: 'POST', contentType: 'application/json' },
+    getTasks: { url: '/task/get-tasks', method: 'GET', contentType: 'application/json' }
+
 
 }

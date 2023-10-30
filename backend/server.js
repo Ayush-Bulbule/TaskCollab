@@ -17,17 +17,6 @@ dotenv.config({ path: './.env' });
 
 app.use('/uploads', express.static('uploads'))
 
-//Development
-// //check connection
-// db.connect((err) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("DB Connected!")
-//     }
-// });
-//Test Route
-
 //Production
 const con = mysql.createPool("mysql://admin:AyUsDUrveshPraN@database-1.cqmmqqerazz0.ap-south-1.rds.amazonaws.com/taskcollab");
 

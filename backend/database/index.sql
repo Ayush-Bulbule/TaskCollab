@@ -96,3 +96,12 @@ CREATE TABLE user_roles (
   FOREIGN KEY (role_id) REFERENCES roles(role_id)
 );
 
+
+create table notification(
+    notification_id int primary key auto_increment,
+    sender_id int,
+    message text,
+    reciver_id int,
+    created_at timestamp default current_timestamp
+);
+

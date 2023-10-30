@@ -14,7 +14,7 @@ module.exports = {
   },
   getTasksByUser: (userId) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM tasks WHERE fk_user = ?', [userId], (err, results) => {
+      db.query('SELECT * FROM tasks WHERE fk_user = (select user_id from users where user_id=?)', [userId], (err, results) => {
         if (err) {
           reject(err);
         } else {

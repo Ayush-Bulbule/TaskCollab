@@ -45,12 +45,6 @@ export const routes = [
         element: <Profile />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
-        element: <Tables />,
-      },
-      {
         icon: <BellIcon {...icon} />,
         name: "notifactions",
         path: "/notifactions",
