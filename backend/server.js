@@ -18,7 +18,7 @@ dotenv.config({ path: './.env' });
 app.use('/uploads', express.static('uploads'))
 
 //Production
-const con = mysql.createPool("mysql://admin:AyUsDUrveshPraN@database-1.cqmmqqerazz0.ap-south-1.rds.amazonaws.com/taskcollab");
+const con = mysql.createPool(process.env.DB_URL);
 
 
 app.get('/', (req, res) => {
