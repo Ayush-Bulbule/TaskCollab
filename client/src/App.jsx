@@ -1,22 +1,38 @@
-import { Button } from '@material-tailwind/react'
-import React from 'react'
-import toast, { Toaster } from 'react-hot-toast'
+import { Dashboard, Auth } from "@/layouts";
+import { SignIn } from "./pages/auth";
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
+import { useState } from 'react';
+import { DataProvider } from "./context/DataProvider";
+import ProjectDetails from "./pages/dashboard/projectDetails";
+function App() {
 
-const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const PrivateRoute = ({ isAuthenticated }) => {
+    if (isAuthenticated) {
+      return (
+        <Outlet />
+      )
+    }
+    else {
+      return <Navigate replace to='/auth/sign-in' />
+    }
+  }
+
   return (
-    <>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
-      <div className="h-screen w-screen flex flex-col items-center justify-center">
-        <h1 className='my-2'>Hello, Let's Collab</h1>
-        <Button size='sm' color='blue' onClick={() => toast('Welcome!', {
-          icon: '👋',
-        })}>Get Started</Button>
-      </div>
-    </>
-  )
+
+    <DataProvider>
+      <Routes>
+        <Route path="/auth/sign-in" element={<SignIn setIsAuthenticated={setIsAuthenticated} />} />
+
+        {/* Protected */}
+        <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="/dashboard/*" element={<Dashboard />} />
+
+          <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+        </Route>
+      </Routes>
+    </DataProvider>
+  );
 }
 
-export default App
+export default App;
